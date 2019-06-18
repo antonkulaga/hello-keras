@@ -52,9 +52,10 @@ preds = model.predict(image)
 i = preds.argmax(axis=1)[0]
 label = lb.classes_[i]
 
-# draw the class label + probability on the output image
+#text = ', '.join([x + ": " + str(round(y * 100, 2)) + "%" for (x,y) in list(zip(lb.classes_, preds[0])) ])
 text = "{}: {:.2f}%".format(label, preds[0][i] * 100)
-cv2.putText(output, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7,
+# draw the class label + probability on the output image
+cv2.putText(output, text, (10, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.7,
             (0, 0, 255), 2)
 
 # show the output image
